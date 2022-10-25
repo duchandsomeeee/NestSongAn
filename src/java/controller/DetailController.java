@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ductm.controller;
+package controller;
 
 import ductm.category.CategoryDAO;
 import ductm.category.CategoryDTO;
@@ -11,9 +11,10 @@ import ductm.product.ProductDAO;
 import ductm.product.ProductDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author minhd
  */
-@WebServlet(name = "SearchController", urlPatterns = {"/SearchController"})
-public class SearchController extends HttpServlet {
+@WebServlet(name = "DetailController", urlPatterns = {"/detail"})
+public class DetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,28 +38,19 @@ public class SearchController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String searchValue = request.getParameter("txtSearch");
-        try {
-            if (!searchValue.trim().isEmpty()) {
-                ProductDAO dao = new ProductDAO();
-                CategoryDAO daoC = new CategoryDAO();
-                ProductDTO last = dao.newProduct();
-                List<CategoryDTO> listC = daoC.getAllCategory();
-                ArrayList<ProductDTO> result = dao.searchProduct(searchValue);
-                request.setAttribute("listP", result);
-                request.setAttribute("listC", listC);
-                request.setAttribute("n", last);
-                request.setAttribute("searchValue", searchValue);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            RequestDispatcher rd = request.getRequestDispatcher("HomePage.jsp");
-            rd.forward(request, response);
-        }
+       String id = request.getParameter("pid");
+        ProductDAO dao = new ProductDAO();
+        ProductDTO dto = dao.getProductByID(id);
+        CategoryDAO daoC = new CategoryDAO();
+        ProductDTO last = dao.newProduct();
+        List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listC", listC);
+        request.setAttribute("n", last);
+        request.setAttribute("detail", dto);
+        request.getRequestDispatcher("Detail.jsp").forward(request, response);
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,7 +65,13 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -87,7 +85,13 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

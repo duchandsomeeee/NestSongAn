@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Tổ Yến Song Ân</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -54,14 +54,14 @@
             <div class="container">
                 <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
-                <div class="col-sm-9">
-                    <div class="container">
-                        <div class="card">
-                            <div class="row">
-                                <aside class="col-sm-5 border-right">
-                                    <article class="gallery-wrap"> 
-                                        <div class="img-big-wrap">
-                                            <div> <a href="#"><img src="${detail.productImage}"></a></div>
+                    <div class="col-sm-9">
+                        <div class="container">
+                            <div class="card">
+                                <div class="row">
+                                    <aside class="col-sm-5 border-right">
+                                        <article class="gallery-wrap"> 
+                                            <div class="img-big-wrap">
+                                                <div> <a href="#"><img src="${detail.productImage}"></a></div>
                                         </div> <!-- slider-product.// -->
                                         <div class="img-small-wrap">
                                         </div> <!-- slider-nav.// -->
@@ -75,6 +75,7 @@
                                             <span class="price h3 text-warning"> 
                                                 <span class="num">${detail.price}</span><span class="currency">VND</span>
                                             </span> 
+                                                <jsp:include page="ProductDetails.jsp"></jsp:include>
                                         </p> <!-- price-detail-wrap .// -->
                                         <hr>
                                         <div class="row">
@@ -105,6 +106,6 @@
                 </div>
             </div>
         </div>
-       <jsp:include page="Footer.jsp"></jsp:include>
+        <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

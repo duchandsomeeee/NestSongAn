@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ductm.controller;
+package controller;
 
-import ductm.category.CategoryDAO;
-import ductm.category.CategoryDTO;
 import ductm.product.ProductDAO;
 import ductm.product.ProductDTO;
+import ductm.product.ProductDescriptionDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -25,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author minhd
  */
-@WebServlet(name = "HomeController", urlPatterns = {"/HomeController"})
-public class HomeController extends HttpServlet {
+@WebServlet(name = "ProductDescriptionController", urlPatterns = {"/description"})
+public class ProductDescriptionController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,19 +36,14 @@ public class HomeController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+       String productID = request.getParameter("a");
         ProductDAO dao = new ProductDAO();
-        CategoryDAO daoC = new CategoryDAO();
-        List<ProductDTO> list = dao.getAllProduct();
-        ProductDTO last = dao.newProduct();
-        List<CategoryDTO> listC = daoC.getAllCategory();
-        request.setAttribute("listP", list);
-        request.setAttribute("listC", listC);
-        request.setAttribute("n", last);
-        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
+        ProductDescriptionDTO prod = dao.getDes(productID);
+        request.setAttribute("d", prod);
+        request.getRequestDispatcher("ProductDetails.jsp").forward(request, response);
                 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,9 +61,7 @@ public class HomeController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDescriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -88,9 +79,7 @@ public class HomeController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDescriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

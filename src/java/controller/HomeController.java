@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ductm.controller;
+package controller;
 
 import ductm.category.CategoryDAO;
 import ductm.category.CategoryDTO;
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author minhd
  */
-@WebServlet(name = "DetailController", urlPatterns = {"/detail"})
-public class DetailController extends HttpServlet {
+@WebServlet(name = "HomeController", urlPatterns = {"/HomeController"})
+public class HomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,17 +40,17 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-       String id = request.getParameter("pid");
         ProductDAO dao = new ProductDAO();
-        ProductDTO dto = dao.getProductByID(id);
         CategoryDAO daoC = new CategoryDAO();
+        List<ProductDTO> list = dao.getAllProduct();
         ProductDTO last = dao.newProduct();
         List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listP", list);
         request.setAttribute("listC", listC);
         request.setAttribute("n", last);
-        request.setAttribute("detail", dto);
-        request.getRequestDispatcher("Detail.jsp").forward(request, response);
+        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
                 
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,9 +68,9 @@ public class DetailController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -88,9 +88,9 @@ public class DetailController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
