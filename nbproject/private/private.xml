@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PRJ/NestSongAn/src/java/ductm/product/ProductDAO.java</file>
+            <file>file:/D:/PRJ/NestSongAn/src/java/ductm/utils/DBHelper.java</file>
             <file>file:/D:/PRJ/NestSongAn/src/java/controller/DetailController.java</file>
+            <file>file:/D:/PRJ/NestSongAn/src/java/ductm/product/ProductDAO.java</file>
+            <file>file:/D:/PRJ/NestSongAn/src/java/ductm/product/ProductDTO.java</file>
             <file>file:/D:/PRJ/NestSongAn/web/Detail.jsp</file>
             <file>file:/D:/PRJ/NestSongAn/src/java/ductm/product/ProductDescriptionDTO.java</file>
-            <file>file:/D:/PRJ/NestSongAn/src/java/controller/SearchController.java</file>
-            <file>file:/D:/PRJ/NestSongAn/src/java/controller/ProductDescriptionController.java</file>
-            <file>file:/D:/PRJ/NestSongAn/web/Footer.jsp</file>
-            <file>file:/D:/PRJ/NestSongAn/web/Left.jsp</file>
             <file>file:/D:/PRJ/NestSongAn/web/WEB-INF/web.xml</file>
             <file>file:/D:/PRJ/NestSongAn/web/HomePage.jsp</file>
-            <file>file:/D:/PRJ/NestSongAn/web/META-INF/context.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -223,8 +223,8 @@ public class ProductDAO implements Serializable {
         try {
             conn = DBHelper.getConnection();
             if (conn != null) {
-                String sql = "select *\n"
-                        + "from tblProductDescription\n"
+                String sql = "select * "
+                        + "from tblProductDescription "
                         + "where ProductID = ?";
 
                 stm = conn.prepareStatement(sql);
@@ -242,6 +242,7 @@ public class ProductDAO implements Serializable {
                 }
             }
         } catch (Exception e) {
+           
         } finally {
             if (rs != null) {
                 rs.close();
@@ -255,4 +256,6 @@ public class ProductDAO implements Serializable {
         }
         return null;
     }
+    
+   
 }
