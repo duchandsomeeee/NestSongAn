@@ -75,7 +75,20 @@
                                             <span class="price h3 text-warning"> 
                                                 <span class="num">${detail.price}</span><span class="currency">VND</span>
                                             </span> 
-                                                <jsp:include page="ProductDetails.jsp"></jsp:include>
+                                        <dl class="item-property">
+
+                                            <dt>Description</dt>
+                                            <dd><p>
+                                                    Weight:  ${DES.weight} </br>
+                                                    Type:  ${DES.type}</br>
+                                                    Specific:  ${DES.specific}</br>
+                                                    Smell:  ${DES.smell}</br>
+                                                    Preserve:  ${DES.preserve}</br>
+
+                                                </p></dd>
+
+
+                                        </dl>
                                         </p> <!-- price-detail-wrap .// -->
                                         <hr>
                                         <div class="row">

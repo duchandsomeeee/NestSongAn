@@ -9,6 +9,7 @@ import ductm.category.CategoryDAO;
 import ductm.category.CategoryDTO;
 import ductm.product.ProductDAO;
 import ductm.product.ProductDTO;
+import ductm.product.ProductDescriptionDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -41,14 +42,22 @@ public class DetailController extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
        String id = request.getParameter("pid");
+
         ProductDAO dao = new ProductDAO();
+        
         ProductDTO dto = dao.getProductByID(id);
+        
+        String pid = request.getParameter("a");
+               
+        ProductDescriptionDTO prod = dao.getDes(pid);
+        
         CategoryDAO daoC = new CategoryDAO();
         ProductDTO last = dao.newProduct();
         List<CategoryDTO> listC = daoC.getAllCategory();
         request.setAttribute("listC", listC);
         request.setAttribute("n", last);
         request.setAttribute("detail", dto);
+        request.setAttribute("DES", prod);
         request.getRequestDispatcher("Detail.jsp").forward(request, response);
                 
     }

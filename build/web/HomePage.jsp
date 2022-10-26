@@ -38,7 +38,7 @@
                                 <div class="card">
                                     <img class="card-img-top" src="${o.productImage}" alt="Card image cap">
                                     <div class="card-body">
-                                        <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}&&description?a=${o.productID}" title="View Product">${o.productName}</a></h4>
+                                        <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}&a=${o.productID}" title="View Product">${o.productName}</a></h4>
                                         <div class="row">
                                             <div class="col">
                                                 <p class="btn btn-danger btn-block">${o.price} VND</p>

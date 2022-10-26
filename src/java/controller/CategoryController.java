@@ -41,6 +41,7 @@ public class CategoryController extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
        String cid = request.getParameter("cid");
+        String productID = request.getParameter("a");
         ProductDAO dao = new ProductDAO();
         ProductDTO last = dao.newProduct();
          CategoryDAO daoC = new CategoryDAO();

@@ -5,28 +5,30 @@
  */
 package ductm.product;
 
+import java.io.Serializable;
+
 /**
  *
  * @author minhd
  */
-public class ProductDescriptionDTO {
+public class ProductDescriptionDTO implements Serializable{
     private String productID;
-    private String Weight;
-    private String Type;
-    private String Specific;
-    private String Smell;
-    private String Preserve;
+    private String weight;
+    private String type;
+    private String specific;
+    private String smell;
+    private String preserve;
 
     public ProductDescriptionDTO() {
     }
 
-    public ProductDescriptionDTO(String productID, String Weight, String Type, String Specific, String Smell, String Preserve) {
+    public ProductDescriptionDTO(String productID, String weight, String type, String specific, String smell, String preserve) {
         this.productID = productID;
-        this.Weight = Weight;
-        this.Type = Type;
-        this.Specific = Specific;
-        this.Smell = Smell;
-        this.Preserve = Preserve;
+        this.weight = weight;
+        this.type = type;
+        this.specific = specific;
+        this.smell = smell;
+        this.preserve = preserve;
     }
 
     public String getProductID() {
@@ -38,44 +40,44 @@ public class ProductDescriptionDTO {
     }
 
     public String getWeight() {
-        return Weight;
+        return weight;
     }
 
-    public void setWeight(String Weight) {
-        this.Weight = Weight;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
-    public void setType(String Type) {
-        this.Type = Type;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getSpecific() {
-        return Specific;
+        return specific;
     }
 
-    public void setSpecific(String Specific) {
-        this.Specific = Specific;
+    public void setSpecific(String specific) {
+        this.specific = specific;
     }
 
     public String getSmell() {
-        return Smell;
+        return smell;
     }
 
-    public void setSmell(String Smell) {
-        this.Smell = Smell;
+    public void setSmell(String smell) {
+        this.smell = smell;
     }
 
     public String getPreserve() {
-        return Preserve;
+        return preserve;
     }
 
-    public void setPreserve(String Preserve) {
-        this.Preserve = Preserve;
+    public void setPreserve(String preserve) {
+        this.preserve = preserve;
     }
-    
-    
+
+   
 }
