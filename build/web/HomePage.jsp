@@ -13,7 +13,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        
+        <p><%=request.getAttribute("message") ==null?"": request.getAttribute("message") %></p>
         <jsp:include page="Menu.jsp"></jsp:include>
+
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -29,10 +32,10 @@
         </div>
         <div class="container">
             <div class="row">
-               <jsp:include page="Left.jsp"></jsp:include>
-                        
-                <div class="col-sm-9">
-                    <div class="row">
+                <jsp:include page="Left.jsp"></jsp:include>
+
+                    <div class="col-sm-9">
+                        <div class="row">
                         <c:forEach items="${listP}" var="o">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card">
@@ -44,7 +47,7 @@
                                                 <p class="btn btn-danger btn-block">${o.price} VND</p>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                                <a href="AddToCartController?id=${o.productID}&name=${o.productName}&op=add_to_cart&quantity=1" class="btn btn-success btn-block">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +59,9 @@
 
             </div>
         </div>
-       <jsp:include page="Footer.jsp"></jsp:include>
+
+
+        <jsp:include page="Footer.jsp"></jsp:include>
 
     </body>
 </html>
