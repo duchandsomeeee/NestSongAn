@@ -79,11 +79,11 @@
 
                                             <dt>Description</dt>
                                             <dd><p>
-                                                    Weight:  ${DES.weight} </br>
+                                                    Weight:  ${DES.weight} gram </br> 
                                                     Type:  ${DES.type}</br>
                                                     Specific:  ${DES.specific}</br>
                                                     Smell:  ${DES.smell}</br>
-                                                    Preserve:  ${DES.preserve}</br>
+                                                    Preserve:  ${DES.preserve} Thang</br> 
 
                                                 </p></dd>
 

@@ -22,7 +22,7 @@
                 <div class="col">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="HomePage.jsp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="HomeController">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Category</a></li>
                             <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
                         </ol>
