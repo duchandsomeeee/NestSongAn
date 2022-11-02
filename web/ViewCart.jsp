@@ -46,7 +46,7 @@
                 %>
 
                 <tr>
-            <form action="AddToCartController" method="POST">
+            <form action="CartController" method="POST">
                     <td><%=count++%></td>
                     <td><%= item.getName()%></td>
                     <td><input name="quantity" type="number" value="<%= item.getQuantity()%>" required=""></td>

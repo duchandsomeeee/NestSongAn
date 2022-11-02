@@ -47,7 +47,7 @@
                                                 <p class="btn btn-danger btn-block">${o.price} VND</p>
                                             </div>
                                             <div class="col">
-                                                <a href="AddToCartController?id=${o.productID}&name=${o.productName}&op=add_to_cart&quantity=1" class="btn btn-success btn-block">Add to cart</a>
+                                                <a href="CartController?id=${o.productID}&name=${o.productName}&op=add_to_cart&quantity=1" class="btn btn-success btn-block">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
