@@ -14,7 +14,7 @@
     </head>
     <body>
         
-        <p><%=request.getAttribute("message") ==null?"": request.getAttribute("message") %></p>
+        <p><%=request.getAttribute("message")==null?"": request.getAttribute("message") %></p>
         <jsp:include page="Menu.jsp"></jsp:include>
 
         <div class="container">
