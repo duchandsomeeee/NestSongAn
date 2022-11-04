@@ -6,17 +6,14 @@
 package controller;
 
 import ductm.category.CartDTO;
-import ductm.category.CategoryDAO;
-import ductm.category.CategoryDTO;
 import ductm.category.Item;
 import ductm.product.ProductDAO;
 import ductm.product.ProductDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ACER
  */
-@WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
+@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
 public class CartController extends HttpServlet {
 
     /**
@@ -41,7 +38,7 @@ public class CartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         int id = 100;
         id = Integer.parseInt(request.getParameter("id")) ;
@@ -95,11 +92,12 @@ public class CartController extends HttpServlet {
         
     }
         protected void addToCart(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String ID = request.getParameter("id");
+        ProductDTO Product = ProductDAO.getProductByID(ID);
         String name = request.getParameter("name");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        Item item = new Item(ID, quantity, name);
+        Item item = new Item(ID, Product, quantity, name);
         //Tạo đối tượng session
         HttpSession session = request.getSession();
         //Lấy cart từ session
@@ -114,7 +112,7 @@ public class CartController extends HttpServlet {
         //Để cart vào session
          cart = getCart.getList();
         session.setAttribute("cart", cart);
-        request.getRequestDispatcher("/HomeController").forward(request, response);
+        request.getRequestDispatcher("HomeController").forward(request, response);
     }
     
     protected void checkout(HttpServletRequest request, HttpServletResponse response)
@@ -145,7 +143,11 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -159,7 +161,11 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -5,30 +5,49 @@
  */
 package ductm.category;
 
+import ductm.product.ProductDTO;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author ACER
  */
-public class Item {//item in a cart
-    String ID; //tham chiếu tới productID
-    int quantity; //số lượng item cho vào trong cart 
-    String name;
+public class Item implements Serializable{//item in a cart
+    private String id; //tham chiếu tới productID
+    private ProductDTO product;
+    private int quantity; //số lượng item cho vào trong cart 
+    private String name;
 
     public Item() {
+        super();
     }
 
-    public Item(String ID, int quantity, String name) {
-        this.ID = ID;
+    public Item(String id, ProductDTO product, int quantity, String name) {
+        this.id = id;
+        this.product = product;
         this.quantity = quantity;
         this.name = name;
     }
 
     public String getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
+    }
+
+    public ProductDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDTO product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -46,7 +65,6 @@ public class Item {//item in a cart
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
     
 }
