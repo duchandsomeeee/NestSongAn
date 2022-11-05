@@ -21,6 +21,12 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%
@@ -34,10 +40,12 @@
             if (cart.size() > 0) {
         %>
         <jsp:include page="Menu.jsp"></jsp:include>
-            <div class="container">
-                <div class="row">
+          <div class="container">
+            <div class="row">
                 <jsp:include page="Left.jsp"></jsp:include>
+
                     <div class="col-sm-9">
+                        <div class="row">
                         <div class="container">
                             <div class="card">
                                 <div class="row">
@@ -121,12 +129,12 @@
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>
-                                                <c:out value="${sessionScope.total}VND" />
+                                                <c:out value="${sessionScope.total}$" />
                                                 </strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong><c:out value="${sessionScope.total*10/100}VND " /></strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong><c:out value="${sessionScope.total*10/100}$ " /></strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
-                                            <h5 class="font-weight-bold"> <c:out value="${sessionScope.total+sessionScope.total*10/100}" /> VND</h5>
+                                            <h5 class="font-weight-bold"> <c:out value="${sessionScope.total+sessionScope.total*10/100}" /> $</h5>
                                         </li>
                                     </ul><a href="buy" class="btn btn-dark rounded-pill py-2 btn-block">Mua hàng</a>
                                 </div>

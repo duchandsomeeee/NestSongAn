@@ -7,12 +7,15 @@ package controller;
 
 import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import ductm.category.CartDTO;
+import ductm.category.CategoryDAO;
+import ductm.category.CategoryDTO;
 import ductm.category.Item;
 import ductm.product.ProductDAO;
 import ductm.product.ProductDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +45,7 @@ public class CartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         int id = 100;
         id = Integer.parseInt(request.getParameter("id")) ;
@@ -59,13 +62,28 @@ public class CartController extends HttpServlet {
                 break;
             case "Update": 
                 UpdateProduct(request, response);
+                break;
+            case "ViewCart":
+                viewCart(request, response);
+                        
                 
 
         }
         System.out.println(id);
     }
+   protected void viewCart(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+        ProductDAO dao = new ProductDAO();
+        CategoryDAO daoC = new CategoryDAO();
+        ProductDTO last = dao.newProduct();
+        List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listC", listC);
+        request.setAttribute("n", last);
+        request.getRequestDispatcher("ViewCart.jsp").forward(request, response);
+                
+        
+   }
     protected void UpdateProduct(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    throws ServletException, IOException, SQLException, ClassNotFoundException {
         int id = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         CartDTO cart = new CartDTO();
@@ -76,13 +94,20 @@ public class CartController extends HttpServlet {
             cart.Update(id, quantity);
             lst = cart.getList();
         }
+        ProductDAO dao = new ProductDAO();
+        CategoryDAO daoC = new CategoryDAO();
+        ProductDTO last = dao.newProduct();
+        List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listC", listC);
+        request.setAttribute("n", last);
+        
         session.setAttribute("cart", lst);
         session.setAttribute("total", totalPrice(lst));
         request.getRequestDispatcher("ViewCart.jsp").forward(request, response);
         
     }
     protected void DeleteProduct(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    throws ServletException, IOException, SQLException, ClassNotFoundException {
         int id = Integer.parseInt(request.getParameter("id"));
         CartDTO cart = new CartDTO();
         HttpSession session = request.getSession(); 
@@ -92,13 +117,19 @@ public class CartController extends HttpServlet {
             cart.deleteProduct(id);
             lst = cart.getList();
         }
+        ProductDAO dao = new ProductDAO();
+        CategoryDAO daoC = new CategoryDAO();
+        ProductDTO last = dao.newProduct();
+        List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listC", listC);
+        request.setAttribute("n", last);
         session.setAttribute("cart", lst);
         session.setAttribute("total", totalPrice(lst));
         request.getRequestDispatcher("ViewCart.jsp").forward(request, response);
         
     }
         protected void addToCart(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String ID = request.getParameter("id");
         ProductDTO Product = ProductDAO.getProductByID(ID);
         String name = request.getParameter("name");
@@ -117,6 +148,12 @@ public class CartController extends HttpServlet {
         getCart.add(item);
         //Để cart vào session
          cart = getCart.getList();
+         ProductDAO dao = new ProductDAO();
+         CategoryDAO daoC = new CategoryDAO();
+        ProductDTO last = dao.newProduct();
+        List<CategoryDTO> listC = daoC.getAllCategory();
+        request.setAttribute("listC", listC);
+        request.setAttribute("n", last);
         session.setAttribute("cart", cart);
         session.setAttribute("total", totalPrice(cart));
         request.getRequestDispatcher("HomeController").forward(request, response);
@@ -163,6 +200,8 @@ public class CartController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -180,6 +219,8 @@ public class CartController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

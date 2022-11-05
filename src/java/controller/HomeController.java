@@ -48,9 +48,10 @@ public class HomeController extends HttpServlet {
         ProductDTO last = dao.newProduct();
         List<CategoryDTO> listC = daoC.getAllCategory();
         
-        String name = (String) request.getAttribute("productName");
+        
         request.setAttribute("listP", list);
         request.setAttribute("listC", listC);
+        String name = (String) request.getAttribute("productName");
         request.setAttribute("n", last);
         if(name != null){
             request.setAttribute( "message", "add " + name + " Success");
