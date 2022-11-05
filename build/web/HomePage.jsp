@@ -41,7 +41,7 @@
                                         <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}&a=${o.productID}" title="View Product">${o.productName}</a></h4>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} VND</p>
+                                                <p class="btn btn-danger btn-block">${o.price} $</p>
                                             </div>
                                             <div class="col">
                                                 <a href="#" class="btn btn-success btn-block">Add to cart</a>
