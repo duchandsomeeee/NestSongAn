@@ -80,6 +80,5 @@ public class ProductDTO implements Serializable{
         this.productImage = productImage;
     }
 
-
     
 }

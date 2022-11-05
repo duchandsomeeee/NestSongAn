@@ -20,7 +20,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,23 +40,17 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         ProductDAO dao = new ProductDAO();
         CategoryDAO daoC = new CategoryDAO();
         List<ProductDTO> list = dao.getAllProduct();
         ProductDTO last = dao.newProduct();
         List<CategoryDTO> listC = daoC.getAllCategory();
-        
-        String name = (String) request.getAttribute("productName");
         request.setAttribute("listP", list);
         request.setAttribute("listC", listC);
         request.setAttribute("n", last);
-        if(name != null){
-            request.setAttribute( "message", "add " + name + " Success");
-        }
-        
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-               
+                
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

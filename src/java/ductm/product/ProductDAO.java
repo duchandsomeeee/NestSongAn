@@ -5,7 +5,6 @@
  */
 package ductm.product;
 
-import ductm.category.CartDTO;
 import ductm.category.CategoryDTO;
 import ductm.utils.DBHelper;
 import java.io.Serializable;
@@ -178,7 +177,7 @@ public class ProductDAO implements Serializable {
         return list;
     }
 
-    public static ProductDTO getProductByID(String id) throws SQLException {
+    public ProductDTO getProductByID(String id) throws SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -258,4 +257,5 @@ public class ProductDAO implements Serializable {
         return null;
     }
     
+   
 }

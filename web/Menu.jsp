@@ -18,9 +18,9 @@
                                 </button>
                             </div>
                         </div>
-                        <a class="btn btn-success btn-sm ml-3" href="ViewCart.jsp">
+                        <a class="btn btn-success btn-sm ml-3" href="show">
                             <i class="fa fa-shopping-cart"></i> Cart
-                            <span class="badge badge-light">${cart.size()}</span>
+                            <span class="badge badge-light">3</span>
                         </a>
                     </form>
                 </div>
