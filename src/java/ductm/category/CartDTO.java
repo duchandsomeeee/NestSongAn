@@ -19,7 +19,7 @@ import javax.naming.spi.DirStateFactory;
  */
 public class CartDTO {
     private HashMap<Integer, Item> list = null;
-
+    
     public CartDTO() {
         list = new HashMap<Integer, Item>();
     }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import ductm.category.CartDTO;
 import ductm.category.Item;
 import ductm.product.ProductDAO;
@@ -12,14 +13,17 @@ import ductm.product.ProductDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.DispatcherType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 /**
  *
@@ -73,6 +77,7 @@ public class CartController extends HttpServlet {
             lst = cart.getList();
         }
         session.setAttribute("cart", lst);
+        session.setAttribute("total", totalPrice(lst));
         request.getRequestDispatcher("ViewCart.jsp").forward(request, response);
         
     }
@@ -88,6 +93,7 @@ public class CartController extends HttpServlet {
             lst = cart.getList();
         }
         session.setAttribute("cart", lst);
+        session.setAttribute("total", totalPrice(lst));
         request.getRequestDispatcher("ViewCart.jsp").forward(request, response);
         
     }
@@ -112,6 +118,7 @@ public class CartController extends HttpServlet {
         //Để cart vào session
          cart = getCart.getList();
         session.setAttribute("cart", cart);
+        session.setAttribute("total", totalPrice(cart));
         request.getRequestDispatcher("HomeController").forward(request, response);
     }
     
@@ -129,6 +136,15 @@ public class CartController extends HttpServlet {
         }
         //cho  hiện trang chekout.jsp
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
+    }
+    public double totalPrice(HashMap<Integer, Item> cart){
+        int count = 0;
+        
+        for(Map.Entry<Integer, Item> list : cart.entrySet()){
+            count += list.getValue().getProduct().getPrice() * list.getValue().getQuantity();
+        }
+        return count;
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

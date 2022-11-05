@@ -4,6 +4,8 @@
     Author     : ACER
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.HashMap"%>
 <%@page import="ductm.category.Item"%>
 <%@page import="java.util.List"%>
@@ -23,7 +25,7 @@
     <body>
         <%
             HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-
+           
             if (cart == null) {
         %>
         <h3>The Cart is Empty!</h3>
@@ -118,7 +120,9 @@
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>${TotalCartPrice}</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>
+                                                <c:out value="${sessionScope.total}" />
+                                                </strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
