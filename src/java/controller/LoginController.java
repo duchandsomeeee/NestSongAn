@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = INVALID;
         try {
-            String userID = request.getParameter("userID");
+            String userID = request.getParameter("username");
             String password = request.getParameter("password");
             AccountDAO dao = new AccountDAO();
             AccountDTO user = dao.checkLogin(userID, password);

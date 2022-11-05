@@ -5,12 +5,14 @@
         <group>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/controller/HomeController.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/web/HomePage.jsp</file>
+            <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/ductm/filter/NewFilter.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/ductm/account/AccountDAO.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/controller/LoginController.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/ductm/account/AccountDTO.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/controller/SearchController.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/src/java/controller/MainController.java</file>
             <file>file:/C:/Users/HP/Downloads/NestSongAn-main/web/admin.jsp</file>
+            <file>file:/C:/Users/HP/Downloads/NestSongAn-main/web/login.jsp</file>
         </group>
     </open-files>
 </project-private>
